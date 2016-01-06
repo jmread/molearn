@@ -11,3 +11,8 @@ For a maturing Java-based framework for multi-label multi-output learning, see t
 ```
 	$ python setup.py install
 ```
+## Running
+
+```
+	$ python runDemo.py
+```
