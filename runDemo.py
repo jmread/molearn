@@ -20,9 +20,9 @@ from sklearn import linear_model
 h = linear_model.LogisticRegression()
 
 from molearn.classifiers.BR import BR
-br = BR(L,h)
+br = BR(h)
 from molearn.classifiers.CC import CC
-cc = CC(L,h)
+cc = CC(h)
 
 from time import clock
 from molearn.core import metrics

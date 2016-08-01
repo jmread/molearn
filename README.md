@@ -31,5 +31,5 @@ $ python setup.py develop
 ## Running
  	
 ```bash
-	$ python runDemo.py EMOT.csv 3
+$ python runDemo.py EMOT.csv 3
 ```
