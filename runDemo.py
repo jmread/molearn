@@ -1,17 +1,15 @@
 #!/usr/bin/python
 
 import sys
-import metrics
+from molearn.core import metrics
 from time import *
 from numpy import *
 from sklearn import linear_model
-from classifiers.BR import BR
-from classifiers.CC import CC
+from molearn.classifiers.BR import BR
+from molearn.classifiers.CC import CC
 
 set_printoptions(precision=3, suppress=True)
-basename = "data/"
-dname=sys.argv[1]
-filename=basename+dname+".csv"
+filename=sys.argv[1]
 XY = genfromtxt(filename, skip_header=1, delimiter=",")
 N,DL = XY.shape
 L = int(sys.argv[2])
@@ -29,13 +27,13 @@ br = BR(L,h)
 cc = CC(L,h)
 
 t0 = clock()
-br.train(X_train,Y_train)         
+br.fit(X_train,Y_train)         
 print "BR",
 print metrics.Exact_match(Y_test,br.predict(X_test)),
 print metrics.Hamming_loss(Y_test,br.predict(X_test)),
 print clock() - t0
 t0 = clock()
-cc.train(X_train,Y_train)         
+cc.fit(X_train,Y_train)         
 print "CC",
 print metrics.Exact_match(Y_test,cc.predict(X_test)),
 print metrics.Hamming_loss(Y_test,cc.predict(X_test)),
