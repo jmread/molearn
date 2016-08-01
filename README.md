@@ -10,26 +10,26 @@ I have also come across the [scikit-multilearn](http://scikit-multilearn.github.
 
 ## Installation
 
-```
-	$ python setup.py install
+```bash
+$ python setup.py install
 ```
 
 If you install locally, then use the `--prefix` option, e.g., 
 
-```
-	$ python setup.py develop --prefix=$HOME/.local/
+```bash
+$ python setup.py develop --prefix=$HOME/.local/
 ```
 
 If you will be developing, then
 
-```
-	$ git clone https://github.com/jmread/cerebro
-	$ cd cerebro
-	$ python setup.py develop
+```bash
+$ git clone https://github.com/jmread/cerebro
+$ cd cerebro
+$ python setup.py develop
 ```
 
 ## Running
  	
-```
-	$ python runDemo.py
+```bash
+	$ python runDemo.py EMOT.csv 3
 ```
