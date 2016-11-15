@@ -28,14 +28,14 @@ class CC() :
             self.h[j].fit(XY[:,0:D+j], Y[:,j])
         return self
 
-    def fitOLD(self, X, Y):
-        N, self.L = Y.shape
-        self.h = [ copy.deepcopy(self.hop) for j in range(self.L)]
-        for j in range(self.L):
-            if j>0:
-                X = column_stack([X, Y[:,j-1]])
-            self.h[j].fit(X, Y[:,j])
-        return self
+#    def fitOLD(self, X, Y):
+#        N, self.L = Y.shape
+#        self.h = [ copy.deepcopy(self.hop) for j in range(self.L)]
+#        for j in range(self.L):
+#            if j>0:
+#                X = column_stack([X, Y[:,j-1]])
+#            self.h[j].fit(X, Y[:,j])
+#        return self
 
     def predict(self, X):
         '''
@@ -53,6 +53,7 @@ class CC() :
         '''
             return confidence predictions for X
             NOTE: for multi-label (binary) data only at the moment.
+                ( WARNING: may give index-out-of-bounds error if uni- or multi-target (of > 2 values) data is used in training )
         '''
         N,D = X.shape
         Y = zeros((N,self.L))
@@ -74,7 +75,7 @@ class RCC(CC):
 
     def fit(self, X, Y):
         N,L = Y.shape
-        self.chain = range(L)
+        self.chain = arange(L)
         random.shuffle(self.chain)
         return CC.fit(self, X, Y[:,self.chain])
 
@@ -98,9 +99,9 @@ def demo():
     cc = RCC(L, SGDClassifier(n_iter=100))
     cc.fit(X, Y)
     # test it
-    print cc.predict(X)
-    print "vs"
-    print Y
+    print(cc.predict(X))
+    print("vs")
+    print(Y)
 
 if __name__ == '__main__':
     demo()
