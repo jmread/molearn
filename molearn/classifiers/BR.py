@@ -30,6 +30,14 @@ class BR() :
         #print "]"
         return self
 
+    def partial_fit(self, X, Y):
+        N,L = Y.shape
+
+        for j in range(self.L):
+            self.h[j].partial_fit(X, Y[:,j])
+
+        return self
+
     def predict(self, X):
         '''
             return predictions for X
@@ -62,9 +70,9 @@ def demo():
     br = BR(L, linear_model.SGDClassifier(n_iter=100))
     br.fit(X, Y)
     # test it
-    print br.predict(X)
-    print "vs"
-    print Y
+    print(br.predict(X))
+    print("vs")
+    print(Y)
 
 if __name__ == '__main__':
     demo()
