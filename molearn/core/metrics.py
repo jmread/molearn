@@ -40,10 +40,10 @@ def Exact_match(Ytest,Ypred):
     return sum(sum((Ytest == Ypred) * 1,axis=1)==L) * 1. / N_test
 
 def printEvalHeader():
-    print "Algorithm            Jacc. Hamm. Exact Time  "
+    print("Algorithm            Jacc. Hamm. Exact Time  ")
 
 def printEval(Ytest,Ypred,name="Method",time = 0.0):
-    print "%-20s %.3f %.3f %.3f %0.1f" % (name, J_index(Ytest,Ypred), Hamming_loss(Ytest,Ypred), Exact_match(Ytest,Ypred), time)
+    print("%-20s %.3f %.3f %.3f %0.1f" % (name, J_index(Ytest,Ypred), Hamming_loss(Ytest,Ypred), Exact_match(Ytest,Ypred), time))
 
 def Edit_distance(Ytest,Ypred):
     ''' Average edit distance '''

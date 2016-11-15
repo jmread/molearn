@@ -1,7 +1,7 @@
 from numpy import *
 import copy
 from sklearn.linear_model import LogisticRegression, SGDClassifier
-from CC import CC
+from .CC import CC
 
 #def score(self,P):
 #    ''' score
@@ -247,17 +247,17 @@ def demo():
     # test it
     Yp = pcc.predict(X[:,:])
     # evaluate it
-    print Yp[:,:]
-    print "vs"
-    print Y[:,:]
+    print(Yp[:,:])
+    print("vs")
+    print(Y[:,:])
 
     print("MCC")
     mcc = MCC(L, SGDClassifier(n_iter=100,loss='log'))
     mcc.fit(X, Y)
     Yp = mcc.predict(X[:,:], M=50)
-    print Yp[:,:]
-    print "vs"
-    print Y[:,:]
+    print(Yp[:,:])
+    print("vs")
+    print(Y[:,:])
 
     #from core.metrics import *
     #print metrics.Exact_match(Y,Yp), metrics.J_index(Y,Yp), metrics.Hamming_loss(Y,Yp)
