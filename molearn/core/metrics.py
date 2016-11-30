@@ -1,6 +1,4 @@
 from numpy import *
-from sklearn.metrics import log_loss, make_scorer
-log_loss_scorer = make_scorer(log_loss, needs_proba = True)
 
 def Hamming_loss(Ytest,Ypred):
     ''' Hamming loss aka Hamming distance '''
@@ -18,10 +16,13 @@ def Hamming_matches(Ytest,Ypred):
 def Hamming_losses(Ytest,Ypred):
     return 1.-Hamming_matches(Ytest,Ypred)
 
+from sklearn.metrics import log_loss
+
+
 def Log_loss(Ytest,Ydist):
-    scores = cross_val_score(rf, np.hstack([X_meta, X_numerical_meta]), y, cv = 4, n_jobs = 1, scoring = log_loss_scorer)
-    N_test,L = Ytest.shape
-    return sum((Ytest == Ypred) * 1.) / N_test / L
+    return log_loss(Ytest, Ydist, eps=1e-15, normalize=True)
+#    N_test,L = Ytest.shape
+#    return sum((Ytest == Ypred) * 1.) / N_test / L
 
 def J_index(Ytest,Ypred):
     N_test,L = Ytest.shape
